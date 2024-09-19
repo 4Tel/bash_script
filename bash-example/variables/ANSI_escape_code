@@ -1,0 +1,30 @@
+# Text Font
+  0 : Reset
+  1 : Bold or Lighter
+  2 : Darker
+  3 : Italic (기울임)
+  4 : Underline (밑줄)
+  5 : Slow Blink (깜빡임)
+  6 : Rapid Blink
+  7 : Swap Color of Background and Text
+# 8 ~ 29
+  8 : Hide Text (Unsupported) (드래그해야 보이는 텍스트?)
+  9 : IDK (Unsupported)
+ 10 : IDK
+(I will write later..)
+# Text/Background Color
+ 30 /  40 : Black
+ 31 /  41 : Red
+ 32 /  42 : Green
+ 33 /  43 : Brown
+ 34 /  44 : Blue
+ 35 /  45 : Magenta
+ 36 /  46 : Cyan
+ 37 /  47 : White
+ 38 /  48 : Custom Color ( 38;5;n or 48;2;r;g;b ) ( n: 256 base color )
+ 39 /  49 : reset To Default
+# A + 70 : Brighter Color. Same To 1;A or A;1
+# [30m -> [1;30m or [30;1m or [100m
+# 50 ~ 75
+(TODO: I will write later..)
+

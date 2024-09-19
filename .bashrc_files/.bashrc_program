@@ -1,0 +1,6 @@
+#!/bin/bash
+
+alias .bashF5='. ~/.bashrc'
+alias py='python'
+alias node='pbsnodes -ajS '
+alias vscode='code --no-sandbox'

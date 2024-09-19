@@ -1,0 +1,26 @@
+# .bashrc
+
+# set default text editor
+export EDITOR=vim
+
+# shortcut of option
+alias .unpack='tar -xzvf '
+alias .unfold='tar -xvf '
+alias ls='/usr/bin/ls -A --color=auto -I "\.*\.tmp"'
+alias ll='/usr/bin/ls -lh --color=auto'
+alias lt='/usr/bin/ls -lth --color=auto'
+alias .ff='find -name'
+alias .ffi='find -iname'
+
+# colors
+export KNRM="\033[0m"
+export KRED="\033[31m"
+export KGRN="\033[32m"
+export KYEL="\033[33m"
+export KBLU="\033[34m"
+export KMAG="\033[35m"
+export KCYN="\033[36m"
+export KWHT="\033[37m"
+
+# other escape string
+export CLCL="\033[2K\r"

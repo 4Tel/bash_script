@@ -1,0 +1,5 @@
+varaible
+
+for
+while
+

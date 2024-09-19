@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# 진행 상태를 표시하는 함수
+show_progress() {
+    local max_val=10000
+    for i in $(seq 1 $max_val); do
+        # 현재 줄을 덮어쓰는 진행 상태 표시
+        echo -ne "\r진행 상태: $i/${max_val}"
+        sleep 0.00001
+    done
+    # 진행 완료 메시지
+    echo -e "\r진행 완료!                                  "
+}
+
+# 함수 호출
+show_progress
+
