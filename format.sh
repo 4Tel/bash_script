@@ -3,7 +3,11 @@ symbolic_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd -P)"
 script_dir="$(realpath $symbolic_dir)"
 
 # (path of util.sh file)
-source "${script_dir}/script/utils/util.sh"
+if [ -f "${bash_util}" ];then
+	source "${bash_util}"
+else
+	source "${script_dir}/script/utils/util.sh"
+fi
 
 # (include here)
 

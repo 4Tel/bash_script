@@ -1,48 +1,56 @@
 #!/usr/bin/env bash
-set -E
-trap cleanup SIGINT SIGTERM ERR EXIT
+symbolic_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd -P)"
+script_dir="$(realpath $symbolic_dir)"
+
+# (path of util.sh file)
+if [ -f "${bash_util}" ];then
+	source "${bash_util}"
+else
+	source "${script_dir}/script/utils/util.sh"
+fi
+
+# (include here)
+
+# (handle exit signal here)
 cleanup() {
-	trap - SIGINT SIGTERM ERR EXIT
-	# (Scipt here)
+	trap - EXIT
+}
+handle_sigint() {
+	trap - SIGINT
+	cleanup
+}
+handle_sigterm() {
+	trap - SIGTERM
+	cleanup
+}
+handle_error() {
+#	trap - ERR
+	msg "Error on line $1: $2" 1
 }
 
-symbolic_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd -P)"
-script_dir="$(realpath "$(dirname "${BASH_SOURCE[0]}")")"
-source "${script_dir}/../setting.sh"
-msg "${KRED}test${KNRM}"
+# (usage here)
 usage() {
 	cat <<EOF
 Usage: $(basename "${BASH_SOURCE[0]}") [-h] 
-	-p param_value arg1 [arg2...]
 
 (Script description)
 
 Option:
  	-h, --help      show this help message and exit
- 	-p, --param     (parameter description)
 EOF
  	exit
 }
-die() {
- 	local msg=$1
- 	local code=${2-1} # default exit status 1
- 	msg "$msg"
- 	exit "$code"
-}
+
 parse_params() {
-	# require atleast 1 argument
 	if [ $# -eq 0 ];then usage;exit 1;fi
-	OPTIONS="$(getopt -o hp: -l help,param: -- "$@")"
-	# parsing error
+	# (set arguments here)
+	OPTIONS="$(getopt -o h -l help -- "$@")"
 	if [ $? -ne 0 ];then exit 1;fi
 	eval set -- "${OPTIONS}"
-	param=''
+	# (set parsing here)
 	while :; do
 		case "${1-}" in
 	 		-h | --help) usage ;;
- 			-p | --param)
-				param="${2-}"
-				shift 2;;
 			--) shift;break;;
 		esac
 	done
@@ -50,8 +58,7 @@ parse_params() {
 	args=("$@")
 	return 0
 }
-
 parse_params "$@"
-echo 1
-echo $args
-# script logic here.
+
+# (script logic here)
+

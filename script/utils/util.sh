@@ -25,7 +25,7 @@ setup_colors() {
 	# -t 2: check stderr connect to terminal
 	# ${NO_COLOR}: check user setting (use "export NO_COLOR=1")
 	# ${TERM-}: Terminal not support color in "dumb"
-	if [[ -t 2 ]] && [[ -z "${NO_COLOR-}" ]] && [[ "${TERM-}" != "dumb" ]]; then
+	if [[ -t 2 ]] && [[ -v NO_COLOR ]] && [[ "${TERM-}" != "dumb" ]]; then
 		KNRM='\033[0m' KBLK='\033[0;30m' KRED='\033[0;31m' KGRN='\033[0;32m' KYEL='\033[0;33m' KBLU='\033[0;34m' KMAG='\033[0;35m' KCYN='\033[0;36m' KWHT='\033[0;37m'
 	else
 		KNRM='' KBLK='' KGRN='' KYEL='' KBLU='' KMAG='' KCYN='' KWHT=''
