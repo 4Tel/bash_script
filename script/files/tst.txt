@@ -1,0 +1,9 @@
+\033[0;31mtest\033[0m
+Usage: entering.sh [-h] 
+	-p param_value arg1 [arg2...]
+
+(Script description)
+
+Option:
+ 	-h, --help      show this help message and exit
+ 	-p, --param     (parameter description)
