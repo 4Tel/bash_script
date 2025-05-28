@@ -1,2 +1,3 @@
 # Files
-* entering: set auto entering directories and auto entering
+* bookmark: set bookmark directories and go to bookmark
+

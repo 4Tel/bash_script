@@ -3,30 +3,19 @@ symbolic_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd -P)"
 script_dir="$(realpath "$symbolic_dir")"
 
 # (path of util.sh file)
-if [ -n "${bash_util}" ] && [ -f "${bash_util}" ]; then
-	# shellcheck source=script/utils/util.sh
-	source "${bash_util}"
-else
-	source "${script_dir}/script/utils/util.sh"
+if [ -z "${bash_util}" ] || [ ! -f "${bash_util}" ]; then
+	bash_util="${script_dir}/script/utils/util.sh"
 fi
+# shellcheck source=script/utils/util.sh
+source "${bash_util}"
+
 # (include here)
 
 # (handle exit signal here)
-cleanup() {
-	trap - EXIT
-}
-handle_sigint() {
-	trap - SIGINT
-	cleanup
-}
-handle_sigterm() {
-	trap - SIGTERM
-	cleanup
-}
-handle_error() {
-	#	trap - ERR
-	msg "Error on line $1: $2" 1
-}
+#cleanup() {}
+#handle_sigint() {}
+#handle_sigterm() {}
+#handle_error() {}
 
 # (usage here)
 usage() {
@@ -36,7 +25,7 @@ Usage: $(basename "${BASH_SOURCE[0]}") [-h]
 (Script description)
 
 Option:
- 	-h, --help      show this help message and exit
+  -h, --help      show this help message and exit
 EOF
 	exit
 }

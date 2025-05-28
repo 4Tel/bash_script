@@ -9,6 +9,11 @@
 ## -E: catch signals.
 set -Eeuo pipefail
 
+# dummy functions for trap
+cleanup() { return; }
+handle_sigint() { return; }
+handle_sigterm() { return; }
+handle_error() { return; }
 ### SIGINT: signal of interupt (Ctrl+C, etc.)
 ### SIGTERM: signal of termination
 ### ERR: command failure.
@@ -47,6 +52,10 @@ die() {
 	exit "$code"
 }
 
+warn() {
+	local msg="$1"
+	msg "${KYEL}Warning${KNRM}: $msg"
+}
 # can save to variable cat-file
 read_file() {
 	local file="$1"
@@ -61,14 +70,17 @@ read_file() {
 util_dir="$(realpath "$(dirname "${BASH_SOURCE[0]}")")"
 # include lib scripts
 include() {
-	local parse_str="$1==search { \$1=\"\"; printf substr(\$0,2) }"
-	local path
+	local _parse_str, _path
+	_parse_str="$1==search {$1="";printf substr($0,2)}"
+	_path
 	for lib in "$@"; do
-		path="$(awk -v search="$lib" "$parse_str" "${util_dir}/libpath.txt")"
-		if [ ! -f "$util_dir/$path" ]; then
-			die "${util_dir}/${path}: No such file or directory"
+		_path="$(awk -v search="$lib" "$_parse_str" "${util_dir}/libpath.txt")"
+		if [ ! -f "$util_dir/$_path" ]; then
+			die "${util_dir}/$_path: No such file or directory"
 		fi
 		# shellcheck disable=SC1090
-		source "${util_dir}/${path}"
+		source "${util_dir}/$_path"
 	done
 }
+
+BASE="$(realpath "$(dirname "${BASH_SOURCE[0]}")/../../")"
