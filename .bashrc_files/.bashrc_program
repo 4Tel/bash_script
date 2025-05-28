@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# .bashrc_program
 
 alias .bashF5='. ~/.bashrc'
 alias py='python'
