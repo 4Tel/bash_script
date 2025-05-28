@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
-msg="$(printf "${KMAG}path: ${KNRM}")"
-read -p "$msg" -e path
-cd $path
+msg="$(echo -ne "${KMAG}path: ${KNRM}")"
+read -rp "$msg" -e path
+cd "$path" || exit

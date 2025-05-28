@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# shellcheck disable=SC2034
 #! Reference: https://betterdev.blog/minimal-safe-bash-script-template/
 
 ## -x: print command before execute.
@@ -13,7 +14,7 @@ set -Eeuo pipefail
 ### ERR: command failure.
 ### EXIT: exit. (whether success or failure)
 ### [trap command signals]: call command when catch signal
-if [[ "$0" != "${BASH_SOURCE[0]}" ]];then
+if [[ "$0" != "${BASH_SOURCE[0]}" ]]; then
 	trap handle_sigint SIGINT
 	trap handle_sigterm SIGTERM
 	trap 'handle_error "$LINENO" "$BASH_COMMAND"' ERR
@@ -35,38 +36,39 @@ setup_colors
 
 # output to stdout, msg to stderr
 msg() {
-	echo >&2 -e "${@-}${KNRM}"
+	echo >&2 -e "${*-}${KNRM}"
 }
 
 # exit program with msg
 die() {
-  local msg=$1
-  local code=${2-1} # default exit status 1
-  msg "$msg"
-  exit "$code"
+	local msg=$1
+	local code=${2-1} # default exit status 1
+	msg "$msg"
+	exit "$code"
 }
 
 # can save to variable cat-file
 read_file() {
 	local file="$1"
-	if [ ! -f "$file" ];then
+	if [ ! -f "$file" ]; then
 		die "${file}: No such file or directory"
 	fi
 	local IFS=$'\n'
-	local content=($(< "$file"))
+	mapfile -t content <"$file"
 	printf '%s\n' "${content[@]}"
 }
 
 util_dir="$(realpath "$(dirname "${BASH_SOURCE[0]}")")"
 # include lib scripts
 include() {
-	local parse_str='$1==search {$1="";printf substr($0,2)}'
+	local parse_str="$1==search { \$1=\"\"; printf substr(\$0,2) }"
 	local path
-	for lib in "$@";do
+	for lib in "$@"; do
 		path="$(awk -v search="$lib" "$parse_str" "${util_dir}/libpath.txt")"
-		if [ ! -f "$util_dir/$path" ];then
+		if [ ! -f "$util_dir/$path" ]; then
 			die "${util_dir}/${path}: No such file or directory"
 		fi
+		# shellcheck disable=SC1090
 		source "${util_dir}/${path}"
 	done
 }

@@ -4,7 +4,7 @@ function print() { echo >&2 "$@"; }
 
 # linux built-in함수인 getopts를 이용하여 short option 처리
 function parse_options() {
-  print -e "\n${KGRN}option given $@${KNRM}"
+  print -e "\n${KGRN}option given $*${KNRM}"
   OPTIND=1
   while getopts :ab:cd opt; do
     case $opt in
@@ -26,11 +26,11 @@ function parse_options() {
     *) print "$OPTARG is not the option" ;;
     esac
   done
-  shift $(($OPTIND - 1))
+  shift $((OPTIND - 1))
   count=1
   for param in "$@"; do
     print "parameter #$count: $param"
-    count=$(($count + 1))
+    count=$((count + 1))
   done
 }
 

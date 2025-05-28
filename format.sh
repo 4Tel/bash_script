@@ -45,7 +45,6 @@ parse_params() {
 	if [ $# -eq 0 ]; then usage; fi # require atleast 1 argument
 	# (set arguments here)
 	OPTIONS="$(getopt -o h -l help -- "$@")"
-	if [ $? -ne 0 ]; then exit 1; fi
 	eval set -- "${OPTIONS}"
 	# (set parsing here)
 	while :; do

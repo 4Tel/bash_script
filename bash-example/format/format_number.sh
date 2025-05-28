@@ -6,9 +6,9 @@ printf "10진법 : %s\n" $string
 printf "16진법 : %x\n" $string
 printf " 8진법 : %o\n" $string
 # 2진법은 커맨드가 없어요..
-echo " 2진법 : "$(echo "obase=2 ;$string" | bc)
-echo " 3진법 : "$(echo "obase=3 ;$string" | bc)
-echo "21진법 : "$(echo "obase=21;$string" | bc)
+echo " 2진법 : $(echo "obase=2 ;$string" | bc)"
+echo " 3진법 : $(echo "obase=3 ;$string" | bc)"
+echo "21진법 : $(echo "obase=21;$string" | bc)"
 echo ""
 
 echo -e "${KRED}N진법을 10진법으로 출력하기${KNRM}"

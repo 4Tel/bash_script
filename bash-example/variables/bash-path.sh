@@ -8,7 +8,7 @@ if ! $x; then
   echo -e "${KMAG}\${BASH_SOURCE[0]}: ${KNRM}${BASH_SOURCE[0]}"
 else
   x=false
-  cur=$(realpath $(dirname $0))
+  cur=$(realpath "$(dirname "$0")")
   cd ..
-  source ${cur}/bash-path.sh
+  source "${cur}/bash-path.sh"
 fi

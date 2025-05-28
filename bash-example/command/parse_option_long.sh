@@ -13,13 +13,13 @@ function print() { echo >&2 "$@"; }
 # getopt -l help,path:,name:
 
 function parse_options() {
-  print -e "\n${KGRN}option given $@${KNRM}"
+  print -e "\n${KGRN}option given $*${KNRM}"
   # --는 항상 맨 끝에 붙는다.
   OPTIND=1
   options=$(getopt -o a:bc -l help,path:,name: -- "$@")
   print -e "${KBLU}getopt result $options${KNRM}"
 
-  eval set -- $options
+  eval set -- "$options"
   while true; do
     case $1 in
     -h | --help)
@@ -53,7 +53,7 @@ function parse_options() {
   count=1
   for param in "$@"; do
     print "parameter #$count: $param"
-    count=$(($count + 1))
+    count=$((count + 1))
   done
 }
 # invalid option given
