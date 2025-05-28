@@ -1,6 +1,6 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-if ! $x;then
+if ! $x; then
   echo ""
   echo -e "This is Difference of \$x and \${BASH_SOURCE[x]}"
   echo ""

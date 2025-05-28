@@ -1,9 +1,9 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # 파일 내용을 배열로 읽는 함수
 read_file_to_array() {
     local filename="$1"
-    local IFS=$'\n'  # 줄바꿈을 구분자로 설정
+    local IFS=$'\n' # 줄바꿈을 구분자로 설정
     local content
 
     # 파일이 존재하는지 확인
@@ -14,7 +14,7 @@ read_file_to_array() {
 
     # 파일 내용을 읽어 배열로 저장
     #content=($(< "$filename"))
-		content=($(cat "$filename"))
+    content=($(cat "$filename"))
     # 배열의 내용을 출력 (이를 통해 함수의 "반환값"을 만듦)
     printf '%s\n' "${content[@]}"
 }

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # $PWD : current path (executed path)
 echo -e "${KGRN}absolute${KNRM} current path: ${KGRN}${PWD}${KNRM}"

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 function print() { echo >&2 "$@"; }
 # ref) https://mug896.github.io/bash-shell/getopts.html
 
@@ -20,22 +20,40 @@ function parse_options() {
   print -e "${KBLU}getopt result $options${KNRM}"
 
   eval set -- $options
-  while true;do
+  while true; do
     case $1 in
-      -h|--help) print "option: $1";shift 1;;
-      -p|--path) print "option: $1, OPTARG: $2";shift 2;;
-      -a) print "option: $1, OPTARG: $2";shift 2;;
-      -b) print "option: $1";shift 1;;
-      --) shift 1;break;;
-      *) print "option: $1, OPTARG:$2";break;;
+    -h | --help)
+      print "option: $1"
+      shift 1
+      ;;
+    -p | --path)
+      print "option: $1, OPTARG: $2"
+      shift 2
+      ;;
+    -a)
+      print "option: $1, OPTARG: $2"
+      shift 2
+      ;;
+    -b)
+      print "option: $1"
+      shift 1
+      ;;
+    --)
+      shift 1
+      break
+      ;;
+    *)
+      print "option: $1, OPTARG:$2"
+      break
+      ;;
     esac
   done
 
-  shift $(( OPTIND - 1 ))
+  shift $((OPTIND - 1))
   count=1
-  for param in "$@";do
+  for param in "$@"; do
     print "parameter #$count: $param"
-    count=$[ $count + 1 ]
+    count=$(($count + 1))
   done
 }
 # invalid option given

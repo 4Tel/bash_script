@@ -1,7 +1,6 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # ref) https://jason-heo.github.io/programming/2020/12/05/bash-options.html
-function usage()
-{
+function usage() {
     cat <<EOM
 Usage: $0 [options] <url>
 Options:
@@ -12,24 +11,23 @@ EOM
     exit 1
 }
 
-function set_options()
-{
+function set_options() {
     while [ "${1:-}" != "" ]; do
         case "$1" in
-            -X | -request)
-                shift
-                request_method=$1
-                ;;
-            -v | --verbose)
-                verbose_mode="true"
-                ;;
-            -u | --url)
-                shift
-                url=$1
-                ;;
-            *)
-                usage
-                ;;
+        -X | -request)
+            shift
+            request_method=$1
+            ;;
+        -v | --verbose)
+            verbose_mode="true"
+            ;;
+        -u | --url)
+            shift
+            url=$1
+            ;;
+        *)
+            usage
+            ;;
         esac
         shift
     done

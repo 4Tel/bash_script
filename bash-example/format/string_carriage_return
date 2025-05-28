@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # 진행 상태를 표시하는 함수
 show_progress() {
@@ -14,4 +14,3 @@ show_progress() {
 
 # 함수 호출
 show_progress
-

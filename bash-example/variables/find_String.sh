@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # ${var#pattern} - Removes smallest string from the left side that matches the pattern.
 # ${var##pattern} - Removes the largest string from the left side that matches the pattern.
@@ -14,4 +14,3 @@ echo -e "short tail(##*-): ${KGRN}${foo##*-}${KNRM}"
 echo -e "lone head(%-*): ${KGRN}${foo%-*}${KNRM}"
 # echoes 'foo'
 echo -e "short head(%%-*): ${KGRN}${foo%%-*}${KNRM}"
-

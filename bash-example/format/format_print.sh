@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # 원본 문자열
 string="123"
@@ -31,7 +31,7 @@ echo -e "${KRED}정해진 너비 차지하기${KNRM}"
 printf "    10칸 차지 : %10d %10d %10d\n" 1 20 300
 printf "    10칸 차지 : %*s %*s %*s\n" 10 1 10 20 10 300
 printf " 0으로 채우기 : %06d 13\n" $string
-printf " 공백  채우기 : %6s 13\n" "Hi"     # 기본은 우측 정렬
+printf " 공백  채우기 : %6s 13\n" "Hi"    # 기본은 우측 정렬
 printf "좌측 정렬하기 : %-06s 13\n" "test" # 0은 안 됨
 echo ""
 
@@ -44,5 +44,3 @@ printf "today is %(%Y-%m-%d(%a)  %Z%z %H:%M:%S)T\n"
 printf "today is %(%y %b(%B) (%A) %p %I:%M:%S)T\n"
 printf "today is %(%c)T\n"
 printf "today is %(%x %X)T\n"
-
-
