@@ -8,4 +8,4 @@ if ! sensors >/dev/null 2>&1; then
   exit 1
 fi
 
-sensors | grep 'Core' sort -k3 | tail -n 1
+sensors | grep 'Core' | sort -k3 | tail -n 1
